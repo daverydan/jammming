@@ -8,26 +8,45 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			searchResults: 'The Thunder Rolls',
+			searchResults: [{
+				id: 4,
+				name: 'Mary, Did You Know',
+				artist: 'Pentatonix',
+				album: 'That\'s Christmas To Me',
+			}, {
+				id: 5,
+				name: 'Little Drummer Boy',
+				artist: 'for KING & COUNTRY',
+				album: 'Into The Silent Night',
+			}],
 			playlistName: 'Danny\'s Playlist',
-			playlistTracks: [
-				{
+			playlistTracks: [{
+					id: 1,
 					name: 'O Holy Night',
 					artist: 'Mercy Me',
 					album: 'The Christmas Sessions',
-				},
-				{
+				}, {
+					id: 2,
 					name: 'O Come All Ye Faithful',
 					artist: 'Casting Crowns',
 					album: 'Peace On Earth',
-				},
-				{
+				}, {
+					id: 3,
 					name: 'Noel',
 					artist: 'Lauren Daigle',
 					album: 'Adore: Christmas Songs of Worship',
-				},
-			],
+			}],
 		};
+		this.addTrack = this.addTrack.bind(this);
+	}
+
+	addTrack(newTrack) {
+		let playlist = this.state.playlistTracks;
+		const trackFoundInPlaylist = playlist.find(track => track.id === newTrack.id);
+    if (!trackFoundInPlaylist) {
+      playlist.push(newTrack);
+      this.setState({playlistTracks: playlist});
+    }
 	}
 
   render() {
@@ -37,7 +56,7 @@ class App extends React.Component {
     		<div className="App">
 		  		<SearchBar />
 		    	<div className="App-playlist">
-			    	<SearchResults searchResults={this.state.searchResults} />
+			    	<SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
 			    	<PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
 		    	</div>
 	    	</div>
