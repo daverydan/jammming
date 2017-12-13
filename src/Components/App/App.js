@@ -9,6 +9,24 @@ class App extends React.Component {
 		super();
 		this.state = {
 			searchResults: 'The Thunder Rolls',
+			playlistName: 'Danny\'s Playlist',
+			playlistTracks: [
+				{
+					name: 'O Holy Night',
+					artist: 'Mercy Me',
+					album: 'The Christmas Sessions',
+				},
+				{
+					name: 'O Come All Ye Faithful',
+					artist: 'Casting Crowns',
+					album: 'Peace On Earth',
+				},
+				{
+					name: 'Noel',
+					artist: 'Lauren Daigle',
+					album: 'Adore: Christmas Songs of Worship',
+				},
+			],
 		};
 	}
 
@@ -20,7 +38,7 @@ class App extends React.Component {
 		  		<SearchBar />
 		    	<div className="App-playlist">
 			    	<SearchResults searchResults={this.state.searchResults} />
-			    	<PlayList />
+			    	<PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
 		    	</div>
 	    	</div>
     	</div>
