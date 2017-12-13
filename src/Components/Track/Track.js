@@ -5,7 +5,7 @@ class Track extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isRemoval: true,
+			isRemoval: false,
 		};
 	}
 
@@ -16,10 +16,10 @@ class Track extends React.Component {
 
 	render() {
 		return (
-			<div className="Track">
+			<div key={'track-'+this.props.track.id} className="Track">
 			  <div className="Track-information">
-			    <h3>Track Name</h3>
-			    <p>Track Artist | Track Album</p>
+			    <h3>{this.props.track.name}</h3>
+			    <p>{this.props.track.artist} | {this.props.track.album}</p>
 			  </div>
 				  <a className="Track-action">{this.renderAction()}</a>
 			</div>
