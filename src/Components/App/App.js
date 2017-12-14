@@ -3,39 +3,14 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import PlayList from '../PlayList/PlayList';
+import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			searchResults: [{
-				id: 4,
-				name: 'Mary, Did You Know',
-				artist: 'Pentatonix',
-				album: 'That\'s Christmas To Me',
-			}, {
-				id: 5,
-				name: 'Little Drummer Boy',
-				artist: 'for KING & COUNTRY',
-				album: 'Into The Silent Night',
-			}],
-			playlistName: 'Danny\'s Playlist',
-			playlistTracks: [{
-					id: 1,
-					name: 'O Holy Night',
-					artist: 'Mercy Me',
-					album: 'The Christmas Sessions',
-				}, {
-					id: 2,
-					name: 'O Come All Ye Faithful',
-					artist: 'Casting Crowns',
-					album: 'Peace On Earth',
-				}, {
-					id: 3,
-					name: 'Noel',
-					artist: 'Lauren Daigle',
-					album: 'Adore: Christmas Songs of Worship',
-			}],
+			searchResults: [],
+			playlistTracks: [],
 		};
 		this.addTrack = this.addTrack.bind(this);
 		this.removeTrack = this.removeTrack.bind(this);
@@ -46,9 +21,9 @@ class App extends React.Component {
 
 	addTrack(newTrack) {
 		let playlist = this.state.playlistTracks;
-		const trackFoundInPlaylist = playlist.find(track => track.id === newTrack.id);
+		const trackFoundInPlaylist = playlist.find(track => track === newTrack);
     if (!trackFoundInPlaylist) {
-      playlist.push(newTrack);
+			playlist.push(newTrack);
       this.setState({playlistTracks: playlist});
     }
 	}
@@ -72,7 +47,11 @@ class App extends React.Component {
 	}
 
 	search(term) {
-		console.log(term);
+		Spotify.search(term).then(searchResults => {
+      this.setState({
+        'searchResults': searchResults
+	    });
+    });
 	}
 
   render() {
