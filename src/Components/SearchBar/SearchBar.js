@@ -15,7 +15,6 @@ class SearchBar extends React.Component {
 
 	search(event) {
 		event.preventDefault();
-		// console.log('SearchBar.js:', this.state.term)
 		this.props.onSearch(this.state.term); // changed by handleTermChange()
 	}
 
