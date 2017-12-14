@@ -16,7 +16,7 @@ class PlayList extends React.Component {
 	save(event) {
 		event.preventDefault();
 		this.props.onSave(this.props.playlistName, this.props.playlistTracks);
-		// event.target.parentNode.childNodes[0].value = 'New Playlist';
+		event.target.parentNode.childNodes[0].value = 'New Playlist';
 	}
 
 	render() {

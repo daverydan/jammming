@@ -1,5 +1,6 @@
 const clientId = 'a38daf8b65684f37ab49d553519ec834';
-const redirectUri = 'http://localhost:3000';
+// const redirectUri = 'http://localhost:3000';
+const redirectUri = 'http://daveryjammming.surge.sh';
 
 let accessToken;
 
